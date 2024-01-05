@@ -35,8 +35,8 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
 
-      - name: Install Updatecli
+      - name: Install Releasepost
         uses: ./
 
       - name: Test local action without install-only
-        run: updatecli diff --config testdata/updatecli.d/test.yaml
+        run: releasepost --config testdata/releasepost.yaml

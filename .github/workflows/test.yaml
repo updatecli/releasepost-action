@@ -40,3 +40,6 @@ jobs:
 
       - name: Test local action without install-only
         run: releasepost --config testdata/releasepost.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

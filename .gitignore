@@ -75,3 +75,6 @@ typings/
 
 CACHE/
 TEMP/
+
+# Ignore dist directory created by releasepost
+testdata/dist/

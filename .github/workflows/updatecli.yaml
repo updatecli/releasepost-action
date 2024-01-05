@@ -5,8 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - v1
-      - v2
+      - main
   schedule:
     # Run once a day
     - cron: '*/10 * * * *'

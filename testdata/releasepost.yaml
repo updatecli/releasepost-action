@@ -1,0 +1,29 @@
+changelogs:
+  - kind: github
+    dir: dist
+    formats:
+      - extension: asciidoc
+        frontmatters: |
+          ---
+          title: "{{ .Changelog.Name }}"
+          date: {{ .Changelog.PublishedAt }}
+          ---
+        indexfrontmatters: |
+          ---
+          title: "Index Changelog"
+          ---
+      - extension: json
+      - extension: markdown
+        frontmatters: |
+          ---
+          title: "{{ .Changelog.Name }}"
+          date: {{ .Changelog.PublishedAt }}
+          ---
+        indexfrontmatters: |
+          ---
+          title: "Index Changelog"
+          ---
+    spec:
+      owner: updatecli
+      repository: udash
+    

@@ -1,0 +1,43 @@
+pipelineid: releasepost
+title: Bump releasepost version
+actions:
+    default:
+        title: Bump releasepost version to {{ source "releasepost" }}
+        kind: github/pullrequest
+        spec:
+            automerge: true
+            mergemethod: squash
+            usetitleforautomerge: true
+            labels:
+                - dependencies
+        scmid: default
+scms:
+    default:
+        kind: github
+        spec:
+            branch: main
+            email: me@olblak.com
+            owner: updatecli
+            repository: releasepost-action
+            token: '{{requiredEnv "UPDATECLI_GITHUB_TOKEN"}}'
+            user: updatecli
+            username: github-actions
+        disabled: false
+sources:
+    releasepost:
+        name: Get latest releasepost version
+        kind: githubrelease
+        spec:
+            owner: updatecli
+            repository: releasepost
+            token: '{{requiredEnv "UPDATECLI_GITHUB_TOKEN"}}'
+targets:
+    action:
+        name: Bump releasepost version in action.yaml
+        kind: yaml
+        spec:
+            file: action.yaml
+            key: inputs.version.default
+        scmid: default
+        sourceid: releasepost
+

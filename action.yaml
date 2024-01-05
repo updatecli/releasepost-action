@@ -1,0 +1,15 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'releasepost Installer'
+description: 'Install a specific releasepost version'
+author: 'Updatecli'
+branding:
+  icon: 'fast-forward'
+  color: 'purple'
+inputs:
+  version:
+    description: 'Specify releasepost version to use. Accepted values are any releasepost version'
+    required: false
+    default: v0.3.0
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

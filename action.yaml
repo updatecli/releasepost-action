@@ -9,7 +9,7 @@ inputs:
   version:
     description: 'Specify releasepost version to use. Accepted values are any releasepost version'
     required: false
-    default: v0.3.0
+    default: v0.3.1
 runs:
   using: 'node20'
   main: 'dist/index.js'

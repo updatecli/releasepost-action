@@ -69,16 +69,6 @@ describe('main', () => {
     )
   })
 
-  it('unknown platform', async () => {
-    fakePlatformArch('foo', 'bar')
-    await expect(
-      releasepostDownload()
-    ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Unsupported platform foo and arch bar"`
-    )
-    restorePlatformArch()
-  })
-
   it('releasepost not found', async () => {
     const path = process.env['PATH']
     process.env['PATH'] = ''

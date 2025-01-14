@@ -41,7 +41,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.4",
     "@types/node": "^20.5.9",
-    "@vercel/ncc": "^0.38.1",
+    "@vercel/ncc": "^0.38.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.1.0",

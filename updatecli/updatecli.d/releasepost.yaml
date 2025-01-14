@@ -19,7 +19,7 @@ scms:
             email: me@olblak.com
             owner: updatecli
             repository: releasepost-action
-            token: '{{requiredEnv "UPDATECLI_GITHUB_TOKEN"}}'
+            token: '{{requiredEnv "GITHUB_TOKEN"}}'
             user: updatecli
             username: github-actions
         disabled: false
@@ -30,7 +30,7 @@ sources:
         spec:
             owner: updatecli
             repository: releasepost
-            token: '{{requiredEnv "UPDATECLI_GITHUB_TOKEN"}}'
+            token: '{{requiredEnv "GITHUB_TOKEN"}}'
 targets:
     action:
         name: Bump releasepost version in action.yaml

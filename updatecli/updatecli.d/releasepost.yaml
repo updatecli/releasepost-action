@@ -1,5 +1,5 @@
 pipelineid: releasepost
-title: Bump releasepost version
+name: Bump releasepost version
 actions:
     default:
         title: Bump releasepost version to {{ source "releasepost" }}
@@ -37,7 +37,28 @@ targets:
         kind: yaml
         spec:
             file: action.yaml
-            key: inputs.version.default
+            key: $.inputs.version.default
         scmid: default
         sourceid: releasepost
+
+    dist:
+        name: 'chore: rebuild the dist directory'
+        dependson:
+          - "action"
+        disablesourceinput: true
+        kind: shell
+        scmid: "default"
+        spec:
+          command: |
+            npm ci
+            npm run prepare
+          changedif:
+            kind: file/checksum
+            spec:
+              files:
+                - "dist/index.js"
+                - "dist/index.js.map"
+          environments:
+            - name: "PATH"
+            - name: "HOME"
 

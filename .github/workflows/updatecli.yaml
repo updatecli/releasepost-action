@@ -38,7 +38,7 @@ jobs:
 
       - uses: tibdex/github-app-token@v2.1
         id: generate_token
-        if: github.ref == 'refs/heads/v2'
+        if: github.ref == 'refs/heads/main'
         with:
           app_id: ${{ secrets.UPDATECLIBOT_APP_ID }}
           private_key: ${{ secrets.UPDATECLIBOT_APP_PRIVKEY }}

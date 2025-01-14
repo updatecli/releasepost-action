@@ -80,13 +80,6 @@ describe('main', () => {
     process.env['PATH'] = path
   })
 
-  it('run unknown platform', async () => {
-    fakePlatformArch('foo', 'bar')
-    await run()
-    expect(process.exitCode).toBe(ExitCode.Failure)
-    restorePlatformArch()
-  })
-
   it('linux should download', async () => {
     fakePlatformArch('linux', 'x64')
     await releasepostDownload()

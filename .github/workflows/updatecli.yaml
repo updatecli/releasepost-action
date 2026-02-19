@@ -20,7 +20,7 @@ jobs:
       - name: "Setup updatecli"
         uses: "updatecli/updatecli-action@v2.98.0"
       - name: Set Node.js 20.x
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: 20
           cache: npm

@@ -3,7 +3,7 @@ policies:
     config:
       - updatecli/updatecli.d/
   - name: Handle Nodejs version in githubaction
-    policy: ghcr.io/updatecli/policies/nodejs/githubaction:0.9.0@sha256:8e11836ef000730655baf244178846f81a0da3494a62606184dc37c1c4a69752
+    policy: ghcr.io/updatecli/policies/nodejs/githubaction:0.10.0@sha256:66b180d6fc9bd157472b9adb564c4bfc5a9ce19d72faaa9ddd3e90b70f328d0e
     values:
       - updatecli/values.d/scm.yaml
       - updatecli/values.d/nodejs.yaml

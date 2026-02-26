@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: "Setup updatecli"
-        uses: "updatecli/updatecli-action@v2.98.0"
+        uses: "updatecli/updatecli-action@v2.100.0"
       - name: Set Node.js 20.x
         uses: actions/setup-node@v4.1.0
         with:

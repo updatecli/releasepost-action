@@ -3,20 +3,20 @@ policies:
     config:
       - updatecli/updatecli.d/
   - name: Handle Nodejs version in githubaction
-    policy: ghcr.io/updatecli/policies/nodejs/githubaction:0.9.0@sha256:8e11836ef000730655baf244178846f81a0da3494a62606184dc37c1c4a69752
+    policy: ghcr.io/updatecli/policies/nodejs/githubaction:0.10.0@sha256:66b180d6fc9bd157472b9adb564c4bfc5a9ce19d72faaa9ddd3e90b70f328d0e
     values:
       - updatecli/values.d/scm.yaml
       - updatecli/values.d/nodejs.yaml
   - name: Update Updatecli policies
-    policy: ghcr.io/updatecli/policies/updatecli/autodiscovery:0.6.0@sha256:6aa291ba7e99e10fb004a0b581b9f367fb41185799f8d8c2fba4be624606502b
+    policy: ghcr.io/updatecli/policies/updatecli/autodiscovery:0.7.0@sha256:6890c4b4093a80063f518101881098fab8211c986481641faaf797a9ad5a31c3
     values:
       - updatecli/values.d/scm.yaml
   - name: NPM autodiscovery
-    policy: ghcr.io/updatecli/policies/npm/autodiscovery:0.10.0@sha256:0910931022f886b61eb4dc6727d1e477fbfcb457da0102656c5a4b4e2c5d0dfb
+    policy: ghcr.io/updatecli/policies/npm/autodiscovery:0.11.0@sha256:884177c126cce170988e3afd1194b1aa1bad0d8fe9aaeea9eaf8038015e50252
     values:
       - updatecli/values.d/scm.yaml
       - updatecli/values.d/npm.yaml
   - name: Handle Updatecli version in GitHub action
-    policy: ghcr.io/updatecli/policies/updatecli/githubaction:0.5.0@sha256:d094cf9522a80b77953c0bbdf29d7ebc1f2c7bfa7279c5cc1b4af8ba10076770
+    policy: ghcr.io/updatecli/policies/updatecli/githubaction:0.7.0@sha256:a97518f118b03d2f63f45378e1961028b07c23d53db91db892893ff240fa5f4e
     values:
       - updatecli/values.d/scm.yaml

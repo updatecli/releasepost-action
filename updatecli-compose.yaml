@@ -21,7 +21,7 @@ policies:
         ignoreversionconstraints: true
 
   - name: Handle Nodejs version in githubaction
-    policy: ghcr.io/updatecli/policies/nodejs/githubaction:0.8.0@sha256:e0784741fa1628f498336c5154ad406df587fe7fa4c163f23deeed3ffc8809d2
+    policy: ghcr.io/updatecli/policies/nodejs/githubaction:0.11.1@sha256:812c245adc1f20767ca912baf3087022c78e8153a3f27d43729dd8931864f8e3
     values:
       - updatecli/values.d/scm.yaml
     valuesinline:

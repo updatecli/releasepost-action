@@ -33,7 +33,7 @@
   "type": "module",
   "homepage": "https://github.com/updatecli/releasepost-action#readme",
   "dependencies": {
-    "@actions/core": "^1.11.1",
+    "@actions/core": "^3.0.1",
     "@actions/exec": "^3.0.0",
     "@actions/io": "^3.0.2",
     "@actions/tool-cache": "^4.0.0"

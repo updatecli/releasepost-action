@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.0",
     "@vercel/ncc": "^0.45.0",
     "cross-env": "^10.1.0",
     "eslint": "^10.8.1",

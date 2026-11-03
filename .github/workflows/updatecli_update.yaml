@@ -2,16 +2,25 @@
 name: Updatecli - Update
 on:
   workflow_dispatch:
-  schedule:
-    # Run daily at 03:00
-    - cron: "0 3 * * *"
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 3 * * *"
 permissions: {}
 jobs:
   updatecli:
+    name: "Updatecli - ${{ matrix.target_name }}"
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - target_name: "existing pipelines"
+            apply_args: "--existing-only=true"
+          - target_name: "monitored pipelines"
+            apply_args: "--labels=monitor:active"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7.0.1
@@ -21,8 +30,14 @@ jobs:
         uses: "updatecli/updatecli-action@93ae2608256484ef8598e902aa675bbc9e278e4e" # v3.10.0
         with:
           version: "v0.123.0"
-      - name: "Run updatecli only on monitored pipelines"
-        run: updatecli compose apply --clean-git-branches=true --labels="monitor:active" --experimental
+      - name: "Set up Node"
+        uses: "actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1" # v7.1.0
+        with:
+          node-version-file: "package.json"
+          package-manager-cache: false
+        id: node
+      - name: "Run updatecli"
+        run: updatecli compose apply --clean-git-branches=true ${{ matrix.apply_args }} --experimental
         env:
           UPDATECLI_GITHUB_APP_CLIENT_ID: ${{ secrets.UPDATECLIBOT_APP_ID }}
           UPDATECLI_GITHUB_APP_PRIVATE_KEY: ${{ secrets.UPDATECLIBOT_APP_PRIVKEY }}
@@ -30,8 +45,34 @@ jobs:
           UPDATECLI_UDASH_API_URL: ${{ secrets.UPDATECLI_UDASH_API_URL }}
           UPDATECLI_UDASH_ACCESS_TOKEN: ${{ secrets.UPDATECLI_UDASH_ACCESS_TOKEN }}
           UPDATECLI_UDASH_URL: ${{ secrets.UPDATECLI_UDASH_URL }}
-      - name: "Run updatecli only on existing pipelines"
-        run: updatecli compose apply --clean-git-branches=true --existing-only=true --experimental
+  ## When Udash is enabled, run updatecli diff once across all pipelines after
+  ## every matrix job has finished, so Udash learns about pull requests that
+  ## have been merged or closed in the meantime.
+  refresh:
+    name: "Updatecli - Refresh"
+    runs-on: ubuntu-latest
+    needs: updatecli
+    if: ${{ !cancelled() }}
+    ## updatecli diff is a dry run, read access is enough
+    permissions:
+      contents: read
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7.0.1
+        with:
+          persist-credentials: false
+      - name: "Setup updatecli"
+        uses: "updatecli/updatecli-action@93ae2608256484ef8598e902aa675bbc9e278e4e" # v3.10.0
+        with:
+          version: "v0.123.0"
+      - name: "Set up Node"
+        uses: "actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1" # v7.1.0
+        with:
+          node-version-file: "package.json"
+          package-manager-cache: false
+        id: node
+      - name: "Refresh updatecli"
+        run: updatecli compose diff --experimental
         env:
           UPDATECLI_GITHUB_APP_CLIENT_ID: ${{ secrets.UPDATECLIBOT_APP_ID }}
           UPDATECLI_GITHUB_APP_PRIVATE_KEY: ${{ secrets.UPDATECLIBOT_APP_PRIVKEY }}
